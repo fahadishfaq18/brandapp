@@ -1,0 +1,5 @@
+$('.loading').hide();
+$('.panel-color').css({background: 'none', opacity: 1})
+$('#tab-content').html("<%= j render(:partial => 'edit') %>");
+$("#header-menu").children().removeClass('active')
+$('.settings').addClass('active')

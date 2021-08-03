@@ -1,0 +1,263 @@
+<div class="tab-content" id="tab-content">
+   <div id="home" class="tab-pane fade in active">
+      <div class="container-fluid">
+         <div class="custom-registration-card custom-table-holder">
+            <div class="row">
+               <div class="col-md-12">
+                  <%# if current_user && current_user.valuator? %>
+                  <%= link_to "Refresh Brands", new_vendors_vendors_path, class: 'btn btn-primary', style: 'float: right', remote: true, onclick: 'showLoader()' %>
+                  <%# end %>
+                  <table class="table table-bordered mb-0" id="datatable-default">
+                     <thead>
+                        <tr>
+                           <th>Vendor</th>
+                           <th>Logo</th>
+                           <th>Add Logo</th>
+                           <th>Collection</th>
+                           <th>Visibility</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% @vendors.each do |vendor|%>
+                        <tr>
+                           <td><%= vendor.name %></td>
+                           <td><%= image_tag vendor.logo.attached? ? url_for(vendor.logo) : '' %></td>
+                           <td><%=link_to 'Add', '', class: 'btn btn-default',  onclick: 'clickFile()' %></td>
+                           <%= file_field_tag 'logo', style: 'display: none', id: "#{vendor.id}-logo" %>
+                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title'), prompt: 'Selected Collection', class: 'form-control' %></td>
+                           <td><%= link_to "Hide", "#", class: 'btn btn-primary' %></td>
+                        </tr>
+                        <% end %>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div id="changeLogos" class="tab-pane fade">
+      <div id="bulkFeatureDiv" style="display:none;">
+         <div class="row">
+            <div class="row pagingBoxrelative">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <select class="form-control addedSelect2JSfullwidth select2-hidden-accessible" id="rowsPerPageBulkUpload" data-select2-id="rowsPerPageBulkUpload" tabindex="-1" aria-hidden="true">
+                     <option selected="selected" value="10" data-select2-id="4">10 Brands per Page</option>
+                     <option value="20">20 Brands per Page</option>
+                     <option value="50">50 Brands per Page</option>
+                     <option value="100">100 Brands per Page</option>
+                     <option value="200">200 Brands per Page</option>
+                     <option value="-1">Show Allfdsf</option>
+                  </select>
+                  <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-rowsPerPageBulkUpload-container"><span class="select2-selection__rendered" id="select2-rowsPerPageBulkUpload-container" role="textbox" aria-readonly="true" title="10 Brands per Page">10 Brands per Page</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="box">
+                     <ul id="PagingVendorsList" class="pagination" style="margin-left: 2px;"></ul>
+                     <div class="show"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="Polaris-Card__Section">
+            <div class="Polaris-Layout">
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+                  <div class="Polaris-Card">
+                     <div class="Polaris-Card__Header">
+                        <h2 class="Polaris-Heading">Vendors</h2>
+                     </div>
+                     <div class="Polaris-Card__Section">
+                        <div class="selectall">
+                           <label>Select All</label>
+                           <input id="chkSelectAll" type="checkbox">
+                           <label>Without Images</label>
+                           <input type="checkbox" id="chkWithoutImagesOnly">
+                           <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button onclick="MoveSelected();" type="button" class="Polaris-Button btn btn-default Move"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text"><b>Move &gt;&gt;</b></span></span></button></div>
+                        </div>
+                        <ul id="vendorsList"></ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+                  <div class="Polaris-Card">
+                     <div class="Polaris-Card__Header">
+                        <h2 class="Polaris-Heading">Selected Vendors</h2>
+                     </div>
+                     <div class="Polaris-Card__Section">
+                        <div class="selectall">
+                           <label>Select All</label>
+                           <input id="chkSelected" type="checkbox">
+                           <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button onclick="MoveSelectedVendorsBack();" type="button" class="Polaris-Button btn btn-default Move"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text"><b>&lt;&lt; Move</b></span></span></button></div>
+                        </div>
+                        <div class="SelectedVendor " style="background: none !important;">
+                           <ul id="ulSelectedVendor" class="col-xs-12"></ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+                  <div class="Polaris-Card">
+                     <div class="Polaris-Card__Header">
+                        <h2 class="Polaris-Heading">Choose Thumbnail</h2>
+                     </div>
+                     <div class="Polaris-Card__Section">
+                        <div class="ChooseThumbBtn selectall">
+                           <span style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" onclick="chooseThumbs()" class="Polaris-Button ChooseThumbButton"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Choose Thumbnail</span></span></button></span>
+                           <input type="file" name="Thumbnails" style="display: none;" id="fupThumbnails" multiple="">
+                           <span style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button id="btnBulkUploadImages" type="button" class="btnSubmit Polaris-Button"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Upload</span></span></button></span>
+                        </div>
+                        <ul id="vendorThumbnailList"></ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="upgradetoLogoFeature" style="">
+         <div class="box-wrapper">
+            <h3 class="text-center text-uppercase">Check Pricing Tab to use this feature.</h3>
+         </div>
+      </div>
+   </div>
+   <div class="downgradetoLogoFeature" style="display:none;">
+   </div>
+   <div id="brandlayout" class="tab-pane fade locked">
+      <div class="brand-sec">
+         <div class="modal-outer">
+            <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" onclick="ShowPriceTab();" class="btn upgrade Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Upgrade to Unlock</span></span></button></div>
+         </div>
+      </div>
+      <div>
+         <div class="col-md-12 settingPane">
+            <h4 class="text-center">Select Layout</h4>
+            <div class="form-inline">
+               <div class="text-left brand-select">
+                  <!--<select onchange="showpagelayoutimage()" id="drpbrandlayout">-->
+                  <select id="drpbrandlayout" data-select2-id="drpbrandlayout" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                     <option value="0" data-select2-id="6">Default</option>
+                     <option value="1">Pro Layout 1</option>
+                     <option value="2">Pro Layout 2</option>
+                     <option value="3">Pro Layout 3</option>
+                  </select>
+                  <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style="width: 210px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-drpbrandlayout-container"><span class="select2-selection__rendered" id="select2-drpbrandlayout-container" role="textbox" aria-readonly="true" title="Default">Default</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  <br>
+                  <input type="checkbox" id="checkshowproduct"> Show Quick View products
+                  <span style="display: none"><input type="checkbox" id="checkshowproductcount"> Show products count</span>
+               </div>
+               <div class="m-container">
+                  <div class="row">
+                     <div class="col-md-12 col-xs-12 pull-right">
+                        <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" class="btnUpdateSettings btn-s Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button></div>
+                     </div>
+                     <div class="col-md-6 col-xs-12 colbottompadding">
+                        <div class="g-box">
+                           <h2>Default</h2>
+                           <div id="divdefault" class="w-100" style="margin: 4%;border: 1px solid; padding: 2%;"><img src="../../Uploads/DefaultLayout.png"></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-xs-12 colbottompadding">
+                        <div class="g-box">
+                           <h2>Pro Layout 1</h2>
+                           <div id="divrouteone" class="w-100" style="margin: 4%;border: 1px solid; padding: 2%;"><img src="../../Uploads/RouteOneLayout.jpg"></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-xs-12 colbottompadding">
+                        <div class="g-box">
+                           <h2>Pro Layout 2</h2>
+                           <div id="divtacticalgear" class="w-100" style="margin: 4%;border: 1px solid; padding: 2%;"><img src="../../Uploads/tacticalgear.jpg"></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-xs-12 colbottompadding">
+                        <div class="g-box">
+                           <h2>Pro Layout 3</h2>
+                           <div id="divrevolve" class="w-100" style="margin: 4%;border: 1px solid; padding: 2%;"><img src="../../Uploads/Revolve.jpg"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="Widgets" class="tab-pane fade locked">
+      <div class="brand-sec">
+         <div class="modal-outer">
+            <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" onclick="ShowPriceTab();" class="btn upgrade Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Upgrade to Unlock</span></span></button></div>
+         </div>
+      </div>
+      <div class="m-container">
+         <div class="row">
+            <div class="col-md-6 col-xs-12 colbottompadding">
+               <div class="g-box">
+                  <h2>Script</h2>
+                  <div id="widget" class="w-100" style="margin: 5%;border: 1px solid;padding: 5%;">
+                     <div style="margin: 5%;font-weight: bold;">
+                        <textarea class="widgetcode" rows="6" id="txtwidget" disabled="disabled"></textarea>
+                     </div>
+                     <div style="margin: 0 5%;font-weight: bold;float:left">
+                        <span>Copy and paste this code into the closing head tag of your theme or into the HTML area where you are placing each widget script.</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-xs-12 colbottompadding">
+               <div class="g-box">
+                  <h2>Pro Widget 1</h2>
+                  <div id="widget1" class="w-100" style="margin: 5%;border: 1px solid;padding: 5%;">
+                     <div style="margin: 5%;font-weight: bold;float:left"><span>A2Z Widget</span></div>
+                     <div><img src="../../Uploads/A2ZWidget.jpg"></div>
+                     <div style="margin: 5%;font-weight: bold;"><span>Embed code below:-</span></div>
+                     <div id="a2zfilterwidget" class="p-15"> <span style="color:brown"><span style="color:mediumblue">&lt;</span>iframe <span style="color:red"> class<span style="color:mediumblue">='iframewidget'</span> </span> <span style="color:red"> style<span style="color:mediumblue">='border:none;'</span> </span>  <span style="color:red"> height<span style="color:mediumblue">='500px'</span></span> <span style="color:red"> width<span style="color:mediumblue">='100%'</span></span> <span style="color:red"> src<span style="color:mediumblue">='https://brandpage-staging.aperitive.io/UI/HTML/A2ZWidget.HTML?widgetid=9b0a2e55-16af-4faa-97d6-dfa6f39766a9'</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/iframe<span style="color:mediumblue">&gt;</span></span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-xs-12 colbottompadding">
+               <div class="g-box">
+                  <h2>Pro Widget 2</h2>
+                  <div id="widget2" class="w-100" style="margin: 5%;border: 1px solid;padding: 5%;">
+                     <div style="margin: 5%;font-weight: bold;float:left">
+                        <span>Brand Carousal Widget</span>
+                     </div>
+                     <img src="../../Uploads/CarousalWidget.jpg">
+                     <div style="margin: 5%;font-weight: bold;">
+                        <span>Embed code below:-</span>
+                     </div>
+                     <div id="carousalwidget" class="p-15"><span style="color:brown"><span style="color:mediumblue">&lt;</span>iframe <span style="color:red"> class<span style="color:mediumblue">='iframewidget'</span> </span>  <span style="color:red"> style<span style="color:mediumblue">='border:none;'</span> </span>   <span style="color:red"> height<span style="color:mediumblue">='220px'</span></span> <span style="color:red"> width<span style="color:mediumblue">='100%'</span></span> <span style="color:red"> src<span style="color:mediumblue">='https://brandpage-staging.aperitive.io/UI/HTML/CarousalWidget.HTML?widgetid=9b0a2e55-16af-4faa-97d6-dfa6f39766a9'</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/iframe<span style="color:mediumblue">&gt;</span></span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-xs-12 colbottompadding">
+               <div class="g-box">
+                  <h2>Pro Widget 3</h2>
+                  <div id="widget3" class="w-100" style="margin: 5%;border: 1px solid;padding: 5%;">
+                     <div style="margin: 5%;font-weight: bold;float:left">
+                        <span>Brand Thumbnail Widget</span>
+                     </div>
+                     <img src="../../Uploads/ThumbnailWidget.jpg">
+                     <div style="margin: 5%;font-weight: bold;">
+                        <span>Embed code below:-</span>
+                     </div>
+                     <div id="thumbnailwidget" class="p-15"><span style="color:brown"><span style="color:mediumblue">&lt;</span>iframe <span style="color:red"> class<span style="color:mediumblue">='iframewidget'</span> </span>   <span style="color:red"> style<span style="color:mediumblue">='border:none;'</span> </span>  <span style="color:red"> height<span style="color:mediumblue">='600px'</span> </span> <span style="color:red"> width<span style="color:mediumblue">='100%'</span></span> <span style="color:red"> src<span style="color:mediumblue">='https://brandpage-staging.aperitive.io/UI/HTML/ThumbnailWidget.HTML?widgetid=9b0a2e55-16af-4faa-97d6-dfa6f39766a9'</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/iframe<span style="color:mediumblue">&gt;</span></span></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<div></div>
+<div class="panel-footer">
+   <a href="https://apps.shopify.com/brand-page">© Brand Page By Aperitive</a>
+</div>
+
+<script type="text/javascript">
+   function showLoader() {
+      $('.loading').show();
+      $('.panel-color').css({background: 'rgba(10,10,10,0.8)', opacity: 0.5})
+   }
+
+   function clickFile(e) {
+      debugger
+   }
+</script>

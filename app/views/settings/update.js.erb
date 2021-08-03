@@ -1,0 +1,3 @@
+$('.panel-color').css({background: 'none', opacity: 1})
+$('#tab-content').html("<%= j render(:partial => 'edit', setting: @setting) %>");
+toastr.success("Setting updated successfully.");

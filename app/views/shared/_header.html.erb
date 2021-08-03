@@ -1,0 +1,28 @@
+<ul class="nav nav-tabs" id="header-menu">
+  <li class="home active"><a href="/vendors" data-remote="true" onclick="showLoader()"><span class="glyphicon glyphicon-home"><span class="liTitle">Home</span></span></a></li>
+  <li class="settings">
+  	<!-- <a  href="/settings" onclick="showLoader()" data-remote="true">
+  		<span class="glyphicon glyphicon-cog">
+  			<span class="liTitle">Settings</span>
+  		</span>
+  	</a> -->
+  <%= link_to @shop.setting.present? ? edit_settings_path(id: @shop.setting.id) : new_settings_path, remote: true, onclick: 'showLoader()' do %>
+  	<span class="glyphicon glyphicon-cog">
+  			<span class="liTitle">Settings</span>
+  		</span>
+  <% end %>
+  </li>
+  <li class="bulk-upload"><a data-toggle="tab" href="#changeLogos"><span class="glyphicon glyphicon-upload"><span class="liTitle">Bulk Upload Logos</span></span></a></li>
+  <li class="pro_layout"><a data-toggle="tab" href="#brandlayout"><span class="glyphicon glyphicon-upload"><span class="liTitle">Pro Layout</span></span></a></li>
+  <li class="pro-widget"><a data-toggle="tab" href="#Widgets"><span class="glyphicon glyphicon-upload"><span class="liTitle">Pro Widgets</span></span></a></li>
+  <li class="pricing"><a id="aprice" href="/pricing" data-remote= "true" onclick="showLoader()"><span class="glyphicon glyphicon-usd"><span class="liTitle">Pricing</span></span></a></li>
+  <li class="help"><a href="/help" data-remote='true' onclick="showLoader()"><span class="glyphicon glyphicon-question-sign"><span class="liTitle">Help</span></span></a></li>
+</ul>
+
+
+<script type="text/javascript">
+	function showLoader() {
+		$('.loading').show();
+		$('.panel-color').css({background: 'rgba(10,10,10,0.8)', opacity: 0.5})
+	}
+</script>

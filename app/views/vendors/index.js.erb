@@ -1,0 +1,6 @@
+$('.loading').hide();
+$('.panel-color').css({background: 'none', opacity: 1})
+$('#tab-content').html("<%= j render(:partial => 'index') %>");
+$("#header-menu").children().removeClass('active')
+$('.home').addClass('active')
+$.getScript("/assets/examples.datatables.default.js");

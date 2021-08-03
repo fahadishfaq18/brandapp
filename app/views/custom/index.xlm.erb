@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+   <ul class="nonFeaturedBrands">
+      <% ("A"..'Z').to_a.each do |alpha| %>
+      	<% @vendors.each do |pro| %>
+      	<% if pro.name.upcase.starts_with?(alpha.upcase)%>
+      <li>
+         <h3 class="brandPage_header"><%= alpha %></h3>
+         <ul>
+            <li>
+               <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item">
+                  <figure>
+                     <figcaption><%= pro.name.upcase %></figcaption>
+                  </figure>
+               </a>
+            </li>
+         </ul>
+      </li>
+         <% end %>
+         <% end %>
+      <% end%>
+   </ul>
+</string>

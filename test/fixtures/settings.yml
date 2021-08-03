@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  heading_color: MyString
+  heading_size: MyString
+  brand_color: MyString
+  brand_size: MyString
+
+two:
+  heading_color: MyString
+  heading_size: MyString
+  brand_color: MyString
+  brand_size: MyString

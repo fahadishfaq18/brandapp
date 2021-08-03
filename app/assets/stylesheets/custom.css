@@ -1,0 +1,355 @@
+textarea.widgetcode {
+            max-width: 100% !important;
+            width: 100% !important
+        }
+
+        .m-container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .g-box .w-100 {
+            margin: 0px !important;
+            padding: 0px !important;
+            min-height: 380px;
+        }
+
+        .g-box {
+            width: 100%;
+        }
+
+            .g-box img {
+                width: 100%;
+                padding: 15px;
+                object-fit: contain;
+            }
+
+            .g-box h2 {
+                font-size: 18px;
+                text-transform: capitalize;
+            }
+
+        .p-15 {
+            padding: 15px;
+        }
+        .select2 .select2-selection__arrow b:before {
+            content:'';
+            background-image: url(../../Uploads/arrow-polaris.svg);
+            height: 34px;
+            width: 20px;
+            display: block;
+            background-position: center;
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+        }
+       .select2.select2-container .select2-selection--single:focus {
+            outline: #5c6ac4;
+            box-shadow: 0 0 0 1px #5c6ac4, 0 0 0 0 transparent;
+        }
+        .select2-container {
+            border-radius: 3px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow b{
+            border:0;
+            display: block;
+            position: relative;
+            top: unset;
+            width: unset;
+            height: unset;
+            left: unset;
+            margin: 0;
+        }
+
+        #Widgets .g-box img {
+            width: 100%;
+            padding: 15px;
+            height: 300px;
+            object-fit: contain;
+        }
+
+        #Widgets .g-box .w-100 {
+            min-height: 540px;
+        }
+
+        .btn-s {
+            float: right;
+        }
+
+        div#brandlayout {
+            position: relative;
+        }
+
+        button.btn.upgrade:active {
+            background: linear-gradient(180deg,#3f4eae,#3f4eae);
+        }
+
+        .brand-sec {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: rgba(0, 0, 0, 0.4588235294117647);
+            text-align: center;
+            pointer-events: none;
+            z-index: 999999;
+        }
+
+        .modal-outer {
+            position: relative;
+            /* z-index: 99999999999999999; */
+            margin-top: 15%;
+        }
+
+        button.btn.upgrade {
+            color: #fff;
+            border: 0px;
+            padding: 10px 30px;
+            font-size: 16px;
+            text-transform: capitalize;
+            font-weight: 700;
+            pointer-events: initial;
+            transition: 0.5s;
+            top: 45%;
+            position: fixed;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            width: 220px;
+        }
+
+        .btn.btn-custom .Polaris-Button__Content {
+            font-size: 18px;
+        }
+
+        button.btn.btn-custom.Polaris-Button.Polaris-Button--outline:focus {
+            color: #fff;
+            outline: 5px auto #fff;
+        }
+
+        .p-l-15 {
+            padding-left: 15px;
+        }
+
+        .brand-sec {
+            display: none;
+        }
+
+        .locked .brand-sec {
+            display: block;
+        }
+
+        .brand-sec {
+            pointer-events: initial;
+        }
+
+        .locked .brand-sec {
+            pointer-events: none;
+        }
+
+        div#brandlayout.locked {
+            pointer-events: none;
+        }
+
+        #Widgets.locked {
+            pointer-events: none;
+            position: relative;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+            color: #212b36;
+            background-color: transparent;
+            box-shadow: inset 0 -0.4rem 0 #5c6ac4;
+            border: unset;
+        }
+        .nav-tabs>li>a {
+              color: #637381;
+             border: 0;
+        }
+        .nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
+            color: #212b36;
+            text-decoration: none;
+            border-bottom: .3rem solid #dfe3e8;
+            box-shadow: inset 0 -0.3rem 0 #dfe3e8;
+            background: unset;
+            border: 0;
+        }
+        .tab-content {
+            padding: 2rem;
+        }
+        .upgradetoLogoFeature h3 {
+            margin: 0;
+        }
+        .colbottompadding {
+            padding-bottom:15px
+        }
+         ul.pagination li a{
+            padding: 3px 10px;
+         }
+        ul.pagination li:first-child a:hover,ul.pagination li:last-child a:hover {
+            background: linear-gradient(180deg,#f9fafb,#f4f6f8);
+            border-color: #c4cdd5;
+        }
+
+        ul.pagination li:first-child a,ul.pagination li:last-child a {
+            padding: 5px;
+            display: inline-block;
+            background: linear-gradient(180deg,#fff,#f9fafb);
+            border: .1rem solid #c4cdd5;
+            border-radius: 3px;
+            line-height: 1;
+            color: #212b36;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            transition-property: color,background,border,box-shadow;
+            transition-duration: .2s;
+            transition-timing-function: cubic-bezier(.64,0,.35,1);
+        }
+ 
+        .pagination li svg {
+             fill: #627381;
+        }
+        .pagination li.disabled svg {
+            fill: #919eab;
+        }
+        ul.pagination>li.active>a, ul.pagination>li.active>a:focus, ul.pagination>li.active>a:hover {
+            background: linear-gradient(180deg,#6371c7,#5563c1);
+            border-color: #3f4eae;
+            box-shadow: inset 0 1px 0 0 #6774c8, 0 1px 0 0 rgba(22,29,37,.05), 0 0 0 0 transparent;
+            color: #fff;
+            border: 0;
+        }
+        ul.pagination > li > a,ul.pagination > li > a:hover,ul.pagination > li > a:focus {
+            border-color: #38469b;
+            color: #38469b;
+        }
+       
+        .theme-background-color {
+             background: #38469b;
+        }
+        button.theme-background-color:hover {
+            background-color: unset!important;
+            background: linear-gradient(180deg,#3f4eae,#3f4eae);
+            border-color: #38469b;
+            box-shadow: inset 0 0 0 0 transparent, 0 1px 0 0 rgba(22,29,37,.05), 0 0 1px 0 #38469b;
+        }
+        #formSubmit, #formSubmit-pc {
+            background-color: unset;
+            background: linear-gradient(180deg,#6371c7,#5563c1);
+            border-color: #3f4eae;
+            box-shadow: inset 0 1px 0 0 #6774c8, 0 1px 0 0 rgba(22,29,37,.05), 0 0 0 0 transparent;
+        }
+        .navbar.navbar-inverse.navbar-fixed-top.saveBar{
+            top: 0px;
+            height: 5.6rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            display:none;
+        }
+        ul.pagination li{
+            display:none;
+        }
+        ul.pagination li:last-child, ul.pagination li:first-child {
+            display: block;
+        }
+        table.table>thead>tr>th {
+            border: 0;
+        }
+        .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+                padding: 1.6rem;
+        }
+        #optionsTable tr .addNewImg, #optionsTable tr .btnDeleteImg, #optionsTable tr .btnHideVendor, #optionsTable tr .btnFavourite, #optionsTable tr .btnCarousale {
+            padding: .7rem 1.6rem;
+            background: linear-gradient(180deg,#fff,#f9fafb);
+            border: .1rem solid #c4cdd5;
+            box-shadow: 0 1px 0 0 rgba(22,29,37,.05);
+            border-radius: 3px;
+            transition-property: background,border,box-shadow;
+            transition-duration: .2s;
+            transition-timing-function: cubic-bezier(.64,0,.35,1);
+            -webkit-tap-highlight-color: transparent;
+        }
+        #optionsTable tr .addNewImg.enabled, #optionsTable tr .btnHideVendor.enabled, #optionsTable tr .btnFavourite.enabled, #optionsTable tr .btnCarousale.enabled {
+            background: linear-gradient(180deg,#6371c7,#5563c1)!important;
+            border-color: #3f4eae;
+            box-shadow: inset 0 1px 0 0 #6774c8, 0 1px 0 0 rgba(22,29,37,.05), 0 0 0 0 transparent;
+            color: #fff;
+        }
+        .select2-selection__rendered {
+            line-height: 31px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 35px !important;
+        }
+        .select2-selection__arrow {
+            height: 34px !important;
+        }
+        .btnUpdate.btnSubmit {
+            margin: 0px auto;
+        }
+        .top_header_col.row{
+             margin: 20px -15px;
+        }
+        ul#vendorsList {
+            padding:0;
+        }
+        .subSession .Polaris-Layout__Section--oneHalf {
+            flex: 1 1 0;
+        }
+        .table_container{
+           overflow-x: auto;
+        }
+
+
+        @media (max-width:1320px) {
+            body {
+                max-width: 100%;
+            }
+            .container.body-content {
+                max-width: 100%;
+            }
+        
+        }
+        @media (max-width:991px) {
+            .searchVendorContainer {
+                 padding: 0;
+                 padding-bottom: 10px;
+            }
+            .limitPerPageContainer{
+                  padding-bottom: 10px;
+            }
+            .btnUpdate.btnSubmit{
+                margin-top: 4px;
+            }
+            .PZero {
+                padding-top: 0 !important;
+            }
+        }
+        .CustomCSSContainer {
+            padding-top:0px;
+        }
+
+        .loading {
+      height: 0;
+    width: 0;
+    padding: 40px;
+    border: 6px solid #ccc;
+    border-right-color: #888;
+    border-radius: 46px;
+    -webkit-animation: rotate 1s infinite linear;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+@-webkit-keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+     use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

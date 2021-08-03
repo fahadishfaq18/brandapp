@@ -1,0 +1,20 @@
+<ul class="nonFeaturedBrands">
+  <% ("A"..'Z').to_a.each do |alpha| %>
+  <li>
+     <h3 class="brandPage_header" style= "color: <%= @shop.setting && @shop.setting.heading_color.present? ? @shop.setting.heading_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.heading_size.present? ? @shop.setting.heading_size + 'px !important' : '' %>"><%= alpha %></h3>
+  	<% @vendors.each do |pro| %>
+     <ul>
+  		<% if pro.name.upcase.starts_with?(alpha.upcase)%>
+        <li>
+           <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item" style= "color: <%= @shop.setting && @shop.setting.brand_color.present? ? @shop.setting.brand_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.brand_size.present? ? @shop.setting.brand_size + 'px !important' : '' %>">
+              <figure>
+                 <figcaption ><%= pro.name.upcase %></figcaption>
+              </figure>
+           </a>
+        </li>
+     <% end %>
+     </ul>
+     <% end %>
+  </li>
+  <% end%>
+</ul>

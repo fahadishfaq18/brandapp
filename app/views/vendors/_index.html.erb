@@ -1,0 +1,37 @@
+ <div id="home" class="tab-pane fade in active">
+      <div class="container-fluid">
+         <div class="custom-registration-card custom-table-holder">
+            <div class="row">
+               <div class="col-md-12">
+                  <%= link_to "Refresh Brands", new_vendors_vendors_path, class: 'btn btn-primary', style: 'float: right', remote: true, onclick: 'showLoader()' %>
+                  
+                  <table class="table table-bordered table-striped mb-0" id="datatable-default">
+                     <thead>
+                        <tr>
+                           <th>Vendor</th>
+                           <th>Collection</th>
+                           <th>Visibility</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% @vendors.each do |vendor|%>
+                        <tr>
+                           <td><%= vendor.name %></td>
+                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title'), prompt: 'Selected Collection' %></td>
+                           <td><%= link_to "Hide", "#", class: 'btn btn-primary' %></td>
+                        </tr>
+                        <% end %>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script type="text/javascript">
+   function showLoader() {
+      $('.loading').show();
+      $('.panel-color').css({background: 'rgba(10,10,10,0.8)', opacity: 0.5})
+   }
+</script>
