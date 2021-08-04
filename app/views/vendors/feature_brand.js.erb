@@ -1,0 +1,7 @@
+$('.loading').hide();
+$('.panel-color').css({background: 'none', opacity: 1})
+<% if @success %>
+  $('#featured-<%= @vendor.id %>').text('No')
+<% else %>
+	  $('#featured-<%= @vendor.id %>').text('Yes')
+<% end %>

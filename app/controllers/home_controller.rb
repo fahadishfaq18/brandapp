@@ -587,18 +587,6 @@ class HomeController < AuthenticatedController
   def pricing
   end
 
-  # def get_content
-  #  debugger
-  #  initiate_shopify_session
-  #  if @shop.vendors.any?
-  #     @vendors = @shop.vendors
-  #  end
-  #  respond_to do |format|
-  #       format.html # index.html.erb
-  #       format.xml # index.xml.erb
-  #   end
-  # end
-
   private
 
    def find_shop

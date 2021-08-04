@@ -1,0 +1,7 @@
+$('.loading').hide();
+$('.panel-color').css({background: 'none', opacity: 1})
+<% if @success %>
+  $('#hide-<%= @vendor.id %>').text('Hide')
+<% else %>
+	  $('#hide-<%= @vendor.id %>').text('Show')
+<% end %>

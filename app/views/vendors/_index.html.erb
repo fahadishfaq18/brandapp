@@ -5,24 +5,29 @@
                <div class="col-md-12">
                   <%= link_to "Refresh Brands", new_vendors_vendors_path, class: 'btn btn-primary', style: 'float: right', remote: true, onclick: 'showLoader()' %>
                   
-                  <table class="table table-bordered table-striped mb-0" id="datatable-default">
-                     <thead>
-                        <tr>
-                           <th>Vendor</th>
-                           <th>Collection</th>
-                           <th>Visibility</th>
-                        </tr>
-                     </thead>
-                     <tbody>
+                   <tbody>
                         <% @vendors.each do |vendor|%>
                         <tr>
                            <td><%= vendor.name %></td>
-                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title'), prompt: 'Selected Collection' %></td>
-                           <td><%= link_to "Hide", "#", class: 'btn btn-primary' %></td>
+                           <td>
+                              <% if vendor.logo.attached?%>
+                              <%= image_tag  url_for(vendor.logo) , width: '40px', height: '40px' %>
+                                 <% end %>
+                           </td>
+                           <td>
+                            <%= form_for(vendor, url: upload_logo_image_path, method: 'post', remote: true) do |f|%>
+                            <%= f.file_field :logo, accept: 'image/png,image/jpeg'%>
+                            <%= f.hidden_field :id, value: vendor.id %>
+                            <%= f.submit 'Add', class: 'btn btn-primary' %>
+                         <% end %>
+
+                           </td>
+                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title'), prompt: 'Selected Collection', class: 'form-control' %></td>
+                           <td><%= link_to vendor.visibility? ? "Hide" : "Show", update_vendor_vendor_path(vendor.id), class: 'btn btn-primary', id: "hide-#{vendor.id}", remote: true, onclick: 'showLoader()' %></td>
+                           <td><%= link_to vendor.is_featured? ? "No" : "Yes", feature_brand_vendor_path(vendor.id), class: 'btn btn-primary', id: "featured-#{vendor.id}", remote: true, onclick: 'showLoader()' %></td>
                         </tr>
                         <% end %>
-                     </tbody>
-                  </table>
+                     </tbody> 
                </div>
             </div>
          </div>

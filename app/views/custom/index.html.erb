@@ -1,16 +1,47 @@
 <ul class="nonFeaturedBrands">
-  <% ("A"..'Z').to_a.each do |alpha| %>
-  <li>
-     <h3 class="brandPage_header" style= "color: <%= @shop.setting && @shop.setting.heading_color.present? ? @shop.setting.heading_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.heading_size.present? ? @shop.setting.heading_size + 'px !important' : '' %>"><%= alpha %></h3>
-  	<% @vendors.each do |pro| %>
+	<% if @vendors.where(is_featured: true).any? %>
+	<li>
+		     <h3 class="brandPage_header" style= "color: <%= @shop.setting && @shop.setting.heading_color.present? ? @shop.setting.heading_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.heading_size.present? ? @shop.setting.heading_size + 'px !important' : '' %>">Featured Brands</h3>
+		 <% @vendors.where(is_featured: true).each do |pro| %>
      <ul>
-  		<% if pro.name.upcase.starts_with?(alpha.upcase)%>
         <li>
            <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item" style= "color: <%= @shop.setting && @shop.setting.brand_color.present? ? @shop.setting.brand_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.brand_size.present? ? @shop.setting.brand_size + 'px !important' : '' %>">
               <figure>
                  <figcaption ><%= pro.name.upcase %></figcaption>
               </figure>
            </a>
+        </li>
+     </ul>
+     <% end %>
+	</li>
+	<% end %>
+  	<% vendors = @vendors.where(is_featured: false).pluck(:name).map(&:first).map(&:upcase).uniq %>
+  <% ("A"..'Z').to_a.each do |alpha| %>
+  <li>
+  	<% if vendors.include?(alpha) %>
+     <h3 class="brandPage_header" style= "color: <%= @shop.setting && @shop.setting.heading_color.present? ? @shop.setting.heading_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.heading_size.present? ? @shop.setting.heading_size + 'px !important' : '' %>"><%= alpha %></h3>
+     <% end %>
+  	<% @vendors.each do |pro| %>
+  		<% next if pro.is_featured? %>
+     <ul>
+  		<% if pro.name.upcase.starts_with?(alpha.upcase)%>
+        <li>
+        	<% if @shop.setting.page_ui_option == 'Text and logos ' || @shop.setting.page_ui_option == 'Show only logos ' %>
+        	 <% if pro.logo.attached?%>
+        	 <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item" style= "color: <%= @shop.setting && @shop.setting.brand_color.present? ? @shop.setting.brand_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.brand_size.present? ? @shop.setting.brand_size + 'px !important' : '' %>">
+              <%= image_tag(pro.logo, {:style => "width: #{@shop.setting && @shop.setting.image_width ? @shop.setting.image_width : 40}px; height: #{@shop.setting && @shop.setting.image_height ? @shop.setting.image_height : 40}px;" }) %>
+           
+           </a>
+          	
+          	<% end %>
+        	<% end %>
+        	<% if @shop.setting.page_ui_option == 'Text and logos ' || @shop.setting.page_ui_option == 'Only text ' %>
+        	           <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item" style= "color: <%= @shop.setting && @shop.setting.brand_color.present? ? @shop.setting.brand_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.brand_size.present? ? @shop.setting.brand_size + 'px !important' : '' %>">
+              <figure>
+                 <figcaption ><%= pro.name.upcase %></figcaption>
+              </figure>
+           </a>
+        	<% end %>
         </li>
      <% end %>
      </ul>
