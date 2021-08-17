@@ -10,8 +10,8 @@ ShopifyApp.configure do |config|
   config.shop_session_repository = 'Shop'
   config.allow_jwt_authentication = true
   config.webhooks = [
-    { topic: 'app/uninstalled', address: 'https://9275d92b2068.ngrok.io/hooks/delete_page', format: 'json' },
-    { topic: 'products/create', address: 'https://9275d92b2068.ngrok.io/hooks/get_vendors', format: 'json' }
+    { topic: 'app/uninstalled', address: 'https://252f9f0bd034.ngrok.io/hooks/delete_page', format: 'json' },
+    { topic: 'products/create', address: 'https://252f9f0bd034.ngrok.io/hooks/get_vendors', format: 'json' }
   ]
 end
 

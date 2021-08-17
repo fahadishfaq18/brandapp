@@ -1,0 +1,49 @@
+<div id="changeLogos">
+      <div id="bulkFeatureDiv">
+         <div class="Polaris-Card__Section">
+            <div class="Polaris-Layout">
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+               </div>
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+                  <div class="Polaris-Card">
+                     <div class="Polaris-Card__Header">
+                        <h2 class="Polaris-Heading">Choose Thumbnail</h2>
+                     </div>
+                     <div class="Polaris-Card__Section">
+                        <%#= form_tag("/bulk_uploads", multipart: true, :method => "post") do %>
+                        <%= form_for Vendor.new, url: bulk_uploads_path do |f| %>
+                        <div class="ChooseThumbBtn selectall">
+                           <span style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" onclick="chooseThumbs()" class="Polaris-Button ChooseThumbButton"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Choose Thumbnail</span></span></button></span>
+                           <%= f.file_field "thumbnails", multiple: true, style: "display: none;", id: "fupThumbnails" %>
+                           <!-- <input type="file" name="Thumbnails" style="display: none;" id="fupThumbnails" multiple=""> -->
+                           <span style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                              <!-- <button id="btnBulkUploadImages" type="button" class="btnSubmit Polaris-Button"> -->
+                                   <%= button_tag class: "btnSubmit Polaris-Button", id: "btnBulkUploadImages" do %>   
+                                   <%#= submit_tag class: "btnSubmit", id: "btnBulkUploadImages" do %>
+                                 <span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Upload</span></span>
+                              <!-- </button> -->
+                              <% end %>
+                           </span>
+                        </div>
+                        <% end %>
+                        <ul id="vendorThumbnailList"></ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="upgradetoLogoFeature" style="">
+         <div class="box-wrapper">
+            <h3 class="text-center text-uppercase">Check Pricing Tab to use this feature.</h3>
+         </div>
+      </div>
+   </div>
+
+   <script type="text/javascript">
+      function chooseThumbs() {
+         $('#fupThumbnails').trigger('click')
+      }
+   </script>

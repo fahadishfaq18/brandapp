@@ -7,7 +7,7 @@
                Toggle your page layout to suit your store requirements and theme. Please select one from below options.
                </label>
                <br>
-               <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+               <!-- <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <div class="Polaris-Stack Polaris-Stack--spacingTight Polaris-Stack--noWrap">
                      <div class="Polaris-Stack__Item">
                         <div>
@@ -20,7 +20,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
                <div class="onlyInProLayout" style="display: none;">
                   <label>
                   Enable Sticky Header(Pro layout 3)
@@ -189,15 +189,17 @@
             </div>
          </div>
       <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;display: initial;">
-      				<%= f.submit class: 'btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary' do %>
-      					<span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span>
-      				<% end %>
+      				
+
+                    <%= button_tag( class: "btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary") do %>
+      <span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span>
+   <% end %>
             	<!-- <button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button> -->
             </div>
       </div>
 <% end %>
 
-      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;margin-top: 2rem;">
+     <!--  <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;margin-top: 2rem;">
          <div class="Polaris-Layout">
             <div class="Polaris-Layout__Section">
                <div class="Polaris-Card">
@@ -205,13 +207,18 @@
                      <h2 class="Polaris-Heading">Custom CSS</h2>
                   </div>
                   <div class="Polaris-Card__Section CustomCSSContainer">
-                     <textarea id="txtCustomCSS"></textarea>
                   </div>
                </div>
             </div>
          </div>
+      </div> -->
+      <!-- <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"> -->
+         <%#= button_tag( class: "btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary") do %>
+      <!-- <span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span> -->
+   <%# end %>
+<%# end %>
+         <!-- <button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button> -->
       </div>
-      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button></div>
    </div>
 
 <script type="text/javascript">

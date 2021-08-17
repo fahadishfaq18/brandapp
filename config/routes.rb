@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/help', to: 'home#help'
   get '/pricing', to: 'home#pricing'
   post 'upload_logo_image', to: 'vendors#upload_logo_image'
+
+  resources :bulk_uploads, only: [:new, :create]
   
   resources :hooks, only: [] do
     collection do
