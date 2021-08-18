@@ -3,6 +3,7 @@ class CreateVendors < ActiveRecord::Migration[5.2]
     create_table :vendors do |t|
       t.string :name
       t.boolean :visibility, default: true
+      t.boolean :is_featured, default: false
       t.integer :shop_id
 
       t.timestamps

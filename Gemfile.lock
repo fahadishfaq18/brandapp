@@ -81,6 +81,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
     erubi (1.10.0)
     execjs (2.8.1)
@@ -165,6 +166,8 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
+    rack-protection (2.1.0)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.6)
@@ -197,6 +200,7 @@ GEM
       ffi (~> 1.0)
     redirect_safely (1.0.0)
       activemodel
+    redis (4.4.0)
     regexp_parser (2.1.1)
     ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
@@ -226,6 +230,11 @@ GEM
       rails (> 5.2.1)
       redirect_safely (~> 1.0)
       shopify_api (~> 9.1)
+    sidekiq (6.0.7)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -281,6 +290,7 @@ DEPENDENCIES
   selenium-webdriver
   shopify_api (~> 9.2)
   shopify_app (~> 14.0)
+  sidekiq (~> 6.0.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   toastr-rails

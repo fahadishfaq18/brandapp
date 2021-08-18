@@ -8,6 +8,9 @@ class CreateSettings < ActiveRecord::Migration[5.2]
       t.string :heading_size
       t.string :brand_color
       t.string :brand_size
+      t.string :page_ui_option
+      t.string :image_width
+      t.string :image_height
       t.integer :shop_id
 
       t.timestamps

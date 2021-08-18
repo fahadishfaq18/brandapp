@@ -25,7 +25,7 @@ class SettingsController < AuthenticatedController
   private
 
   	def setting_params
-  		params.require(:setting).permit(:heading_color, :layout_style, :image_width, :page_ui_option, :heading_size, :brand_color, :brand_size)	
+  		params.require(:setting).permit(:heading_color, :page_ui_option, :image_width, :image_height, :layout_style, :image_width, :page_ui_option, :heading_size, :brand_color, :brand_size)	
   	end
 
   	def find_shop

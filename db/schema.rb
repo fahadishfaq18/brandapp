@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_045740) do
+ActiveRecord::Schema.define(version: 2021_08_16_065859) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -41,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_045740) do
     t.string "heading_size"
     t.string "brand_color"
     t.string "brand_size"
+    t.string "image_height"
     t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,15 +55,18 @@ ActiveRecord::Schema.define(version: 2021_08_03_045740) do
     t.string "shopify_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "page_title"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
   create_table "vendors", force: :cascade do |t|
     t.string "name"
     t.boolean "visibility", default: true
+    t.boolean "is_featured", default: false
     t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end

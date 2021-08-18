@@ -7,7 +7,7 @@
                Toggle your page layout to suit your store requirements and theme. Please select one from below options.
                </label>
                <br>
-               <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+               <!-- <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <div class="Polaris-Stack Polaris-Stack--spacingTight Polaris-Stack--noWrap">
                      <div class="Polaris-Stack__Item">
                         <div>
@@ -20,7 +20,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
                <div class="onlyInProLayout" style="display: none;">
                   <label>
                   Enable Sticky Header(Pro layout 3)
@@ -30,7 +30,8 @@
                      <div class="Polaris-Stack Polaris-Stack--spacingTight Polaris-Stack--noWrap">
                         <div class="Polaris-Stack__Item">
                            <div>
-                              <label class="Polaris-Choice" for="sticky_header_on"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton"><input id="sticky_header_on" name="stickyHeader" type="radio" class="Polaris-RadioButton__Input" aria-describedby="disabledHelpText" value="true" checked=""><span class="Polaris-RadioButton__Backdrop"></span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label">On</span></label>
+                              <label class="Polaris-Choice" for="sticky_header_on"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton">
+                                 <input id="sticky_header_on" name="stickyHeader" type="radio" class="Polaris-RadioButton__Input" aria-describedby="disabledHelpText" value="true" checked=""><span class="Polaris-RadioButton__Backdrop"></span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label">On</span></label>
                            </div>
                         </div>
                         <div class="Polaris-Stack__Item">
@@ -50,8 +51,9 @@
                   <br>
                </div>
                <b>Vendor image size in pixels</b><br>
-               <label class="col-md-2">Width: <input type="number" name="txtVendorImageWidth" class="form-control"></label>
-               <label class="col-md-2">Height: <input type="number" name="txtVendorImageHeight" class="form-control"></label>
+               <label class="col-md-2">Width: 
+                  <%= f.number_field :image_width, class: 'form-control' %></label></label>
+               <label class="col-md-2">Height: <%= f.number_field :image_height, class: 'form-control' %></label></label>
             </div>
             <!-- <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;display: initial;">
             	<button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button></div> -->
@@ -64,17 +66,32 @@
                            <div class="Polaris-Stack__Item">
                               <div>
                                  <label class="Polaris-Choice" for="only_text">
-                                 	<span class="Polaris-Choice__Control"><span class="Polaris-RadioButton"><input id="only_text" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="disabledHelpText" value="1" checked=""><span class="Polaris-RadioButton__Backdrop"></span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label"> Only text</span></label>
+                                 	<span class="Polaris-Choice__Control"><span class="Polaris-RadioButton">
+                                       <!-- <input id="only_text" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="disabledHelpText" value="1" checked=""> -->
+                                       <%= f.radio_button :page_ui_option, "Only text " %>
+                                       <span class="Polaris-RadioButton__Icon"></span>
+                                    </span>
+                                 </span>
+                                 <span class="Polaris-Choice__Label"> Only text</span></label>
                               </div>
                            </div>
                            <div class="Polaris-Stack__Item">
                               <div>
-                                 <label class="Polaris-Choice" for="text_and_logos"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton"><input id="text_and_logos" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="optionalHelpText" value="2"><span class="Polaris-RadioButton__Backdrop"></span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label"> Text and logos</span></label>
+                                 <label class="Polaris-Choice" for="text_and_logos"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton">
+                                    <!-- <input id="text_and_logos" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="optionalHelpText" value="2"> -->
+                                     <%= f.radio_button :page_ui_option, "Text and logos " %>
+                                       
+                                    </span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label"> Text and logos</span></label>
                               </div>
                            </div>
                            <div class="Polaris-Stack__Item">
                               <div>
-                                 <label class="Polaris-Choice" for="show_only_logos"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton"><input id="show_only_logos" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="optionalHelpText" value="3"><span class="Polaris-RadioButton__Backdrop"></span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label">Show only logos</span></label>
+                                 <label class="Polaris-Choice" for="show_only_logos"><span class="Polaris-Choice__Control"><span class="Polaris-RadioButton">
+                                    <!-- <input id="show_only_logos" name="uiRenderOption" type="radio" class="Polaris-RadioButton__Input" aria-describedby="optionalHelpText" value="3"> -->
+                                     <%= f.radio_button :page_ui_option, "Show only logos " %>
+                                    
+                                       
+                                    </span><span class="Polaris-RadioButton__Icon"></span></span></span><span class="Polaris-Choice__Label">Show only logos</span></label>
                               </div>
                            </div>
                         </div>
@@ -171,16 +188,18 @@
                </div>
             </div>
          </div>
+      </div>
       <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;display: initial;">
-      				<%= f.submit class: 'btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary' do %>
-      					<span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span>
-      				<% end %>
+      				
+
+                    <%= button_tag( class: "btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary") do %>
+      <span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span>
+   <% end %>
             	<!-- <button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button> -->
             </div>
-      </div>
 <% end %>
 
-      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;margin-top: 2rem;">
+     <!--  <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;margin-top: 2rem;">
          <div class="Polaris-Layout">
             <div class="Polaris-Layout__Section">
                <div class="Polaris-Card">
@@ -188,13 +207,18 @@
                      <h2 class="Polaris-Heading">Custom CSS</h2>
                   </div>
                   <div class="Polaris-Card__Section CustomCSSContainer">
-                     <textarea id="txtCustomCSS"></textarea>
                   </div>
                </div>
             </div>
          </div>
+      </div> -->
+      <!-- <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"> -->
+         <%#= button_tag( class: "btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary") do %>
+      <!-- <span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span> -->
+   <%# end %>
+<%# end %>
+         <!-- <button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button> -->
       </div>
-      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;"><button type="button" class="btnUpdateSettings btnSubmit Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Save Settings</span></span></button></div>
    </div>
 
 <script type="text/javascript">

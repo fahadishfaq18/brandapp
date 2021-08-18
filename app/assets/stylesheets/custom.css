@@ -122,7 +122,7 @@ textarea.widgetcode {
             font-size: 18px;
         }
 
-        button.btn.btn-custom.Polaris-Button.Polaris-Button--outline:focus {
+        button.btn.btn-custom.Polaris-Button.Polaris-Button--outline {
             color: #fff;
             outline: 5px auto #fff;
         }
