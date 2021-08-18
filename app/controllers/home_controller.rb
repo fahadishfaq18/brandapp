@@ -4,19 +4,19 @@ class HomeController < AuthenticatedController
    before_action :get_shop
     before_action :find_shop
 
-  def index
-   if @shop.vendors.any?
-      @vendors = @shop.vendors
-   else
-      @products = ShopifyAPI::Product.find(:all)
-      @products.map(&:vendor).uniq.each do |vendor|
+   def index
+     if @shop.vendors.any?
+       @vendors = @shop.vendors
+     else
+       @products = ShopifyAPI::Product.find(:all)
+       @products.map(&:vendor).uniq.each do |vendor|
          @shop.vendors.create(name: vendor)
-      end
-   end
-    @vendors = @shop.vendors
-    @collections = ShopifyAPI::CustomCollection.find(:all)
-    brands_page = 
-                  "<main class='main-content' id='MainContent' role='main'>
+       end
+     end
+     @vendors = @shop.vendors
+     @collections = ShopifyAPI::CustomCollection.find(:all)
+     brands_page =
+       "<main class='main-content' id='MainContent' role='main'>
                     <div class='page-width'>
                     <div class='grid'>
                       <div class='grid__item medium-up--five-sixths medium-up--push-one-twelfth'>
@@ -40,7 +40,7 @@ class HomeController < AuthenticatedController
                                 }
                               };
                               xmlHttp.open('GET', theUrl, true);
-                              xmlHttp.send(null); 
+                              xmlHttp.send(null);
                             }
                             httpGetAsync('https://brands-app-1.herokuapp.com/custom/index?storeToken=#{@shop.shopify_token}');
                           </script>
@@ -49,27 +49,27 @@ class HomeController < AuthenticatedController
                     </div>
                  </div>
                 </main>"
-  
-    brands = ShopifyAPI::Page.where(title: "Brands") 
-  return if @shop.page_title.present?
-  if brands.any?
-    ShopifyAPI::Page.create(title: "Brands-1", body_html: brands_page)
-    @shop.update(page_title: "Brands-1")
-  else
-    ShopifyAPI::Page.create(title: "Brands", body_html: brands_page)
-    @shop.update(page_title: "Brands")
-  end
-  #   if @shop.page_title == "Brands"
-  #     return
-  #   elsif brands.any?
-  #     @create_new_page = ShopifyAPI::Page.create(title: "Brands-1", body_html: brands_page)
-  #     @shop.update(page_title: "Brands-1")
-  #   end
-  # else
-  #   @create_new_page = ShopifyAPI::Page.create(title: "Brands", body_html: brands_page)
-  #   @shop.update(page_title: "Brands")
-  # end
-  end
+
+     brands = ShopifyAPI::Page.where(title: "Brands")
+     return if @shop.page_title.present?
+     if brands.any?
+       ShopifyAPI::Page.create(title: "Brands-1", body_html: brands_page)
+       @shop.update(page_title: "Brands-1")
+     else
+       ShopifyAPI::Page.create(title: "Brands", body_html: brands_page)
+       @shop.update(page_title: "Brands")
+     end
+     #   if @shop.page_title == "Brands"
+     #     return
+     #   elsif brands.any?
+     #     @create_new_page = ShopifyAPI::Page.create(title: "Brands-1", body_html: brands_page)
+     #     @shop.update(page_title: "Brands-1")
+     #   end
+     # else
+     #   @create_new_page = ShopifyAPI::Page.create(title: "Brands", body_html: brands_page)
+     #   @shop.update(page_title: "Brands")
+     # end
+   end
 
   def help
   end
