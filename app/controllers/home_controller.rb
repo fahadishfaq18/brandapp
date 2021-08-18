@@ -49,11 +49,10 @@ class HomeController < AuthenticatedController
                   xmlHttp.open('GET', theUrl, true);
                   xmlHttp.send(null); 
                 }
-                httpGetAsync('https://9275d92b2068.ngrok.io/custom/index?storeToken=#{@shop.shopify_token}');
+                httpGetAsync('https://brands-app-1.herokuapp.com/custom/index?storeToken=#{@shop.shopify_token}');
                 var access_token='a9127c4e1e16b9df5acd067dc2e93f4a';
-                var getproducturl='https://9275d92b2068.ngrok.io/getProducts?'
-                ;
-                var getcurrencyurl='https://9275d92b2068.ngrok.io/getCurrency?';
+                var getproducturl='https://brands-app-1.herokuapp.com/getProducts?';
+                var getcurrencyurl='https://brands-app-1.herokuapp.com/getCurrency?';
                 var storename='brandpageapp.myshopify.com';
                 var storeurl='https://brandpageapp.myshopify.com/admin/products.json?';
                 </script>
