@@ -30,6 +30,10 @@ class VendorsController < AuthenticatedController
   end
 
   def new_vendors
+  	@products = ShopifyAPI::Product.find(:all)
+    @products.map(&:vendor).uniq.each do |vendor|
+      @shop.vendors.find_or_create_by(name: vendor)
+    end
   	@vendors = @shop.vendors
   	@collections = ShopifyAPI::CustomCollection.find(:all, :params => {:limit => 250})
   end
