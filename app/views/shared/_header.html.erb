@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs" id="header-menu">
-  <li class="home active"><a href="/vendors" data-remote="true" onclick="showLoader()"><span class="glyphicon glyphicon-home"><span class="liTitle">Home</span></span></a></li>
+  <li class="home active"><a href="/vendors" data-remote="true" onclick="showLoader()"><i class="fa fa-home"><span class="liTitle">Home</span></i></a></li>
   <li class="settings">
   	<!-- <a  href="/settings" onclick="showLoader()" data-remote="true">
   		<span class="glyphicon glyphicon-cog">
@@ -7,16 +7,16 @@
   		</span>
   	</a> -->
   <%= link_to @shop.setting.present? ? edit_settings_path(id: @shop.setting.id) : new_settings_path, remote: true, onclick: 'showLoader()' do %>
-  	<span class="glyphicon glyphicon-cog">
+  	<i class="fa fa-cog">
   			<span class="liTitle">Settings</span>
-  		</span>
+  		</i>
   <% end %>
   </li>
-  <li class="bulk-upload"><a href="/bulk_uploads/new" data-remote="true" onclick="showLoader()"><span class="glyphicon glyphicon-upload"><span class="liTitle">Bulk Upload Logos</span></span></a></li>
-  <li class="pro_layout"><a data-toggle="tab" href="#brandlayout"><span class="glyphicon glyphicon-upload"><span class="liTitle">Pro Layout</span></span></a></li>
-  <li class="pro-widget"><a data-toggle="tab" href="#Widgets"><span class="glyphicon glyphicon-upload"><span class="liTitle">Pro Widgets</span></span></a></li>
-  <li class="pricing"><a id="aprice" href="/pricing" data-remote= "true" onclick="showLoader()"><span class="glyphicon glyphicon-usd"><span class="liTitle">Pricing</span></span></a></li>
-  <li class="help"><a href="/help" data-remote='true' onclick="showLoader()"><span class="glyphicon glyphicon-question-sign"><span class="liTitle">Help</span></span></a></li>
+  <li class="bulk-upload"><a href="/bulk_uploads/new" data-remote="true" onclick="showLoader()"><i class="fa fa-upload"><span class="liTitle">Bulk Upload Logos</span></i></a></li>
+  <li class="pro_layout"><a data-toggle="tab" href="#brandlayout"><span class="fa fa-columns"><span class="liTitle">Pro Layout</span></i></a></li>
+  <li class="pro-widget"><a data-toggle="tab" href="#Widgets"><i class="fa fa-text-width"><span class="liTitle">Pro Widgets</span></i></a></li>
+  <li class="pricing"><a id="aprice" href="/pricing" data-remote= "true" onclick="showLoader()"><i class="fa fa-usd"><span class="liTitle">Pricing</span></i></a></li>
+  <li class="help"><a href="/help" data-remote='true' onclick="showLoader()"><i class="fa fa-question"><span class="liTitle">Help</span></i></a></li>
 </ul>
 
 
