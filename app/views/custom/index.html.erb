@@ -33,7 +33,7 @@
 	           </a>
 	          	<% end %>
 	        	<% end %>
-	        	<% if @shop.setting.page_ui_option == 'Text and logos ' || @shop.setting.page_ui_option == 'Only text' || @shop.setting.page_ui_option == nil %>
+	        	<% if @shop.setting.page_ui_option == 'Text and logos ' || @shop.setting.page_ui_option == 'Only text ' || @shop.setting.page_ui_option == nil %>
 	        	           <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item" style= "color: <%= @shop.setting && @shop.setting.brand_color.present? ? @shop.setting.brand_color + '!important' : '' %>; font-size: <%= @shop.setting && @shop.setting.brand_size.present? ? @shop.setting.brand_size + 'px !important' : '' %>">
 	              <figure>
 	                 <figcaption ><%= pro.name.upcase %></figcaption>
