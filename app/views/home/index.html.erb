@@ -35,7 +35,7 @@
                          <% end %>
 
                            </td>
-                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title'), prompt: 'Selected Collection', class: 'form-control' %></td>
+                           <td><%= select_tag 'collection', options_from_collection_for_select(@collections, 'id', 'title', vendor.collection_id), prompt: 'Selected Collection', class: 'form-control', onchange: "assign_collection(this, #{vendor.id})" %></td>
                            <td><%= link_to vendor.visibility? ? "Hide" : "Show", update_vendor_vendor_path(vendor.id), class: 'btn btn-primary', id: "hide-#{vendor.id}", remote: true, onclick: 'showLoader()' %></td>
                            <td><%= link_to vendor.is_featured? ? "No" : "Yes", feature_brand_vendor_path(vendor.id), class: 'btn btn-primary', id: "featured-#{vendor.id}", remote: true, onclick: 'showLoader()' %></td>
                         </tr>
@@ -267,5 +267,20 @@
    function showLoader() {
       $('.loading').show();
       $('.panel-color').css({background: 'rgba(10,10,10,0.8)', opacity: 0.5})
+   }
+
+   function assign_collection(obj, vendor_id){
+     $.ajax({
+       url:'/vendors/assign_vendor_to_collection?id='+vendor_id+'&collection_id='+obj.value,
+       type:'post',
+       dataType:'json',
+       processData:false,
+       success:function (data) {
+         alert('successfully assigned collection')
+       },
+       error:function (data) {
+         alert ('Error');
+       }
+     });
    }
 </script>

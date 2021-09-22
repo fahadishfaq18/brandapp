@@ -8,7 +8,7 @@
          <h3 class="brandPage_header"><%= alpha %></h3>
          <ul>
             <li>
-               <a href="../collections/vendors?q=<%= pro.name %>" class="brandPage_item">
+               <a href="<%= if pro.collection_title.blank? ? '../collections/vendors?q='+pro.name : '../collections/'+pro.collection_title %><%=  %>" class="brandPage_item">
                   <figure>
                      <figcaption><%= pro.name.upcase %></figcaption>
                   </figure>

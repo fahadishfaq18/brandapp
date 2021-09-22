@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :vendors, only: [:index, :update] do
   	get 'new_vendors', on: :collection
+    post 'assign_vendor_to_collection', on: :collection
   	member do 
   	get 'feature_brand'
   	get 'update_vendor'
